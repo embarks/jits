@@ -1,2 +1,5 @@
-# cute-components
-cute components for my humble lab because I didn't want to deal with anyone else's opinions
+# jits
+
+prebuilt code to support the web presence. it has a storybook:
+
+`yarn install && yarn storybook`
