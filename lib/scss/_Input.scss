@@ -1,0 +1,31 @@
+
+  input.form-control,textarea.form-control {
+    box-sizing: border-box;
+    transition: outline-width .15s;
+    color: $main;
+    border: 1px solid $black;
+    &:not(.subtle) { 
+      background-color: lighten($black, 5%);
+    }
+    &.subtle {
+      width: unset;
+      min-width: 14rem;
+      background-color: $black; 
+      &:hover,&:focus,&:hover:focus {
+        color: $main;
+        background-color: lighten($black, 5%);
+      }
+    }
+    outline: 0px;
+    &:hover {
+      outline: 0px;
+    }
+    &:hover:focus,&:focus {
+      color: $main;
+      outline: .2rem solid $cursor 5%;
+    }
+    &:focus {
+      box-shadow: none;
+      outline: .2rem solid $cursor;
+  }
+}

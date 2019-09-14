@@ -1,0 +1,174 @@
+@import './mixins';
+@import './theme_spacedust';
+
+@mixin transitionShort($property...) {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  transition-property: $property;
+}
+
+@mixin transitionLong($property...) {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  transition-property: $property;
+}
+
+@mixin delayTransition($s) {
+  -webkit-transition-delay: $s; 
+  -moz-transition-delay: $s; 
+  -o-transition-delay: $s; 
+  transition-delay: $s; 
+}
+
+.fireplace {
+  position: absolute;
+  right: 10%;
+  bottom: 3rem;
+  z-index: 1;
+}
+
+footer {
+  height: 19rem;
+  &.mobile {
+    padding-top: 8rem;  
+  }
+  &:not(.mobile) {
+    @include transitionShort(padding, opacity);
+    margin-top: -6rem;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+    padding-top: 6rem;
+  }
+  &.show:not(.mobile) {
+    @include transitionShort(padding, opacity);
+  }
+  position: relative;
+  width: 100%;
+  padding: 0 5%;
+  color: $info;
+  cursor: default;
+  font-family: 'Sans';
+  * { 
+    font-family: 'Sans';
+  }
+  font-smooth: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  u {
+    @include transitionLong(width, transform);
+    width: 0;
+    margin-top: -0.1rem;
+    height: 1.5rem;
+    overflow: hidden;
+    opacity: 0;
+  }
+  &.show u {
+    opacity: 1;
+    display: inline-block;
+    position: absolute;
+    background: lighten($black, 5%);
+    width: 8.2rem;
+    margin-left: -0.4rem;
+    z-index: -1;
+    animation-delay: 1s;
+  }
+  .name {
+    width: 0;
+    overflow:hidden;
+    @include transitionLong(color, margin);
+  }
+  &.show .name {
+    margin-right: 1rem;
+    color: $bright;
+  }
+  &.mobile .fireplace {
+    background: transparent;
+    position: absolute;
+    width: 1px;
+    right: 1px;
+    left: 0;
+    margin: auto;
+    z-index: -1;
+    overflow: hidden;
+    width: 100%;
+    height: 15rem;
+    bottom: 0;
+  }
+  &:not(.mobile) .info-container {
+    height: 100%;
+  }
+  .info-container {
+    @include transitionLong(margin, opacity);
+    font-size: 0.9rem;
+    font-family: 'Sans';
+  }
+  a {
+    color: $info2;
+    font-family: 'Sans-Italic';
+    &:hover {
+      color: $blue;
+    }
+  }
+  .url {
+    white-space: nowrap;
+  }
+  em {
+    font-family: 'Sans';
+    color: $main;
+  }
+  .mailto a {
+    color: $bold;
+    font-family: 'Sans';
+  }
+
+  label {
+    margin-bottom: 0;
+    color: $dark;
+    margin-right: 1rem;
+    &::after {
+      content: ":";
+      color: $bold;
+    }
+  }
+  .bg, .bglt, .bgltr {
+    @include transitionLong(transform);
+    right: 0;
+    left: 0;
+    bottom: 0;
+    @include transform(translateY(100%), 50% 50%);
+    position: absolute;
+    overflow: hidden;
+    &.show-bg, &.show-bglt, &.show-bgltr {
+    @include transform(translateY(0), 50% 50%);
+    }
+  }
+  .bg {
+    @include delayTransition(0.2s);
+    background-color: darken($black, 5%);
+    height: 80%;
+    z-index: -3;
+  }
+  .bglt {
+    @include delayTransition(0.1s);
+    background-color: darken($black, 2%);
+    height: 90%;
+    z-index: -4;
+  }
+  .bgltr {
+    background-color: darken($black, 1%);
+    height: 100%;
+    z-index: -5;
+  }
+  .version {
+    color: $notice;
+  }
+  button {
+    margin-top: 1rem;
+  }
+}

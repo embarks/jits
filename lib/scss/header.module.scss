@@ -1,0 +1,90 @@
+
+@import './theme_spacedust';
+@import './mixins';
+
+@mixin transitionLong($property...) {
+  -webkit-transition: all 1.8s ease;
+  -moz-transition: all 1.8s ease;
+  -o-transition: all 1.8s ease;
+  transition: all 1.8s ease;
+  transition-property: $property;
+}
+
+
+@mixin transitionShort($property...) {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  transition-property: $property;
+}
+
+.header {
+  position: relative;
+  color: $bright;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  span.glass {
+    transition: height 0.5s, width 0.5s, margin 0.5s;
+    background: $bright;
+    position: absolute;
+    height: 0;
+    width: 0;
+    z-index: 2;
+    border-radius: 200px;
+    border: 20px rgba(227, 205, 123, 0.5);
+  }
+  span.shownGlass {
+    height: 120px;
+    width: 120px;
+    margin-left: -60px;
+    margin-top: -50px;
+  }
+  &.mobile-header {
+    overflow: hidden;
+  }
+  u {
+    color: $black;
+    transition: color .2s;
+    cursor: none;
+    display:block;
+    padding: 0 1rem;
+    text-decoration: none;
+    position: absolute;
+    bottom: 6rem;
+    max-width: 150px;
+    right: calc(10% - 75px);
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+    font-style: italic;
+    z-index: 5;
+  }
+}
+
+.nav {
+  width: 100%;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:not(.hidden) {
+    @include transitionLong(all);
+    top: -30%;
+    opacity: 1;
+  }
+}
+
+.hidden {
+  @include transitionShort(all);
+  top: 100%;
+  margin-bottom: 50%;
+  opacity: 0;
+}
+
+
+.scroll-detect {
+  position: absolute;
+  top: 2rem;
+}

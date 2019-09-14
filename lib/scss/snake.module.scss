@@ -1,0 +1,359 @@
+@import './theme_spacedust';
+@import './mixins';
+
+@mixin transitionShort($property...) {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  transition-property: $property;
+}
+
+@mixin transitionLong($property...) {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  transition-property: $property;
+}
+
+
+
+@include keyframes(tail-wave) {
+  0% { 
+    @include transform(scale(0.31) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.31) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.31) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(body-part-4-wave) {
+  0% { 
+    @include transform(scale(0.2) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.2) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.2) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(body-part-3-wave) {
+  0% { 
+    @include transform(scale(0.25) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.25) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.25) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(body-part-2-wave) {
+  0% { 
+    @include transform(scale(0.3) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.3) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.3) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(body-part-1-wave) {
+  0% { 
+    @include transform(scale(0.28) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.28) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.28) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(body-part-0-wave) {
+  0% { 
+    @include transform(scale(0.22) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.22) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.22) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(neck-wave) {
+  0% { 
+    @include transform(scale(0.32) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.32) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.32) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(head-wave) {
+  0% { 
+    @include transform(scale(0.35) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+  50% { 
+    @include transform(scale(0.35) translateX(-9px), 0 0) ;
+    fill: $main;
+  } 
+  100% { 
+    @include transform(scale(0.35) translateX(0), 0 0);
+    fill: lighten($black, 5%);
+   }
+}
+
+@include keyframes(fade) {
+  0% {
+    @include transform(rotate(90deg) scale(0.75) translateY(0), 60% 30%)
+  }
+  50% {
+    @include transform(rotate(90deg) scale(0.75) translateY(-10rem), 60% 30%)
+  }
+  100% {
+    @include transform(rotate(90deg) scale(0.75) translateY(-20rem), 60% 30%)
+  }
+}
+
+
+
+%snake-link {
+  @include transitionShort(fill, transform, animation);
+  display: inline-block;
+  position: absolute;
+}
+
+svg.tail-end {
+  &:not(.shadow) { z-index: 4; }
+  @extend %snake-link;
+  @include transform(scale(0.31), 0 0);
+  top: 2rem;
+  left: 0.2rem;
+  &:hover:not(.mobile) {
+    @include transform(scale(0.31) translateY(-10px), 0 0);
+  }
+  &.animated {
+    @include animation('tail-wave 2s ease infinite');
+    background: transparent;
+  }
+}
+svg.body-part-4 {
+  &:not(.shadow) { z-index: 4; }
+  @extend %snake-link;
+  @include transform(scale(0.2) translateY(0), 0 0);
+  left: 0.2rem;
+  top: 16rem;
+  &:hover:not(.mobile) {
+    @include transform(scale(0.2) translateY(-10px), 0 0);
+  }
+  &.animated {
+    @include animation('body-part-4-wave 2s ease 0.15s infinite')
+  }
+}
+svg.body-part-3 {
+  @extend %snake-link;
+  @include transform(scale(0.25), 0 0);
+  left: 8rem;
+  top: 15rem;
+  &.animated {
+    @include animation('body-part-3-wave 2s ease 0.3s infinite')
+  }
+  &:hover:not(.mobile) {
+    @include transform(scale(0.25) translateY(-10px), 0 0);
+  }
+  &:not(.shadow) { z-index: 5; }
+}
+svg.body-part-2 {
+  @extend %snake-link;
+  @include transform(scale(0.3), 0 0);
+  top: 7rem;
+  left: 10.5rem;
+  &.animated {
+    @include animation('body-part-2-wave 2s ease 0.45s infinite')
+  }
+  &:hover:not(.mobile) {
+    @include transform(scale(0.3) translateY(-10px), 0 0);
+  }
+  &:not(.shadow) { z-index: 5; }
+}
+svg.body-part-1 {
+  @extend %snake-link;
+  @include transform(scale(0.28), 0 0);
+  top: 1.5rem;
+  left: 11.5rem;
+  &.animated {
+    @include animation('body-part-1-wave 2s ease 0.6s infinite')
+  }  
+  &:hover:not(.mobile) {
+    @include transform(scale(0.28) translateY(-10px), 0 0);
+  }
+  &:not(.shadow) { z-index: 3; }
+}
+svg.body-part-0 {
+  @extend %snake-link;
+  @include transform(scale(0.22), 0 0);
+  left: 21rem;
+  top: 12.5rem;
+  &.animated {
+    @include animation('body-part-0-wave 2s ease 0.75s infinite')
+  }
+  &:hover:not(.mobile) {
+    @include transform(scale(0.22) translateY(-10px), 0 0);
+  }
+  &:not(.shadow) { z-index: 3; }
+}
+svg.neck {
+  @extend %snake-link;
+  @include transform(scale(0.32), 0 0);
+  left: 28rem;
+  top: 8rem;
+  &.animated {
+    @include animation('neck-wave 2s ease 1s infinite')
+  }
+  &:hover:not(.mobile) {
+    @include transform(scale(0.32) translateY(-10px), 0 0);
+  }
+  &:not(.shadow) { z-index: 4; }
+}
+svg.head {
+  @extend %snake-link;
+  @include transform(scale(0.35), 0 0);
+  left: 32rem;
+  top: 6rem;
+  &.animated {
+    @include animation('head-wave 2s ease 1.15s infinite');
+  }
+  &:hover:not(.mobile) {
+    @include transform(scale(0.35) translateY(-10px), 0 0);
+  }
+  &:not(.shadow) { z-index: 3; }
+}
+
+.mobile-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  & > div {
+    height: 660px;
+    min-width: 303px;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    @include transitionLong(margin, transform, opacity, position);
+    
+    &.hidden {
+      opacity: 0;
+      @include transform(translateY(-20rem), 50% 50%);
+    }
+    
+    &.shown {
+      opacity: 1;
+    }
+  }
+}
+
+.decoration.mobile-head {
+  @include transform(rotate(90deg) scale(0.75), 60% 30%);
+  position: absolute;
+  width: 100%;
+  height: 538px;
+  opacity: 1;
+}
+
+
+.decoration:not(.mobile-head) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 404px;
+  width: 848px;
+  overflow: hidden;
+}
+
+.decoration {
+  svg {
+    fill: lighten($black, 2%);
+  }
+  svg.shadow {
+    z-index: 2;
+    fill: black;
+    filter: blur(5px);
+  }
+  svg.fill-theme-1 {
+    fill: $dark;
+  }
+  svg.fill-theme-2 {
+    fill: $danger;
+  }
+  svg.fill-theme-3 {
+    fill: $bold;
+  }
+  svg.fill-theme-4 {
+    fill: $main;
+  }
+  svg.fill-theme-5 {
+    fill: $bright;
+  }
+  svg.fill-theme-6 {
+    fill: $info;
+  }
+  svg.fill-theme-7 {
+    fill: $bright-green;
+  }
+  svg.fill-theme-8 {
+    fill: $blue;
+  }
+  svg.fill-theme-9 {
+    fill: $warn;
+  }
+  svg.fill-theme-10 {
+    fill: $notice;
+  }
+  svg.fill-theme-11 {
+    fill: $bright-blue;
+  }
+  svg.fill-theme-12 {
+    fill: $info2;
+  }
+}

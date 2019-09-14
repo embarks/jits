@@ -1,0 +1,30 @@
+// overrides
+$enable-rounded: false;
+// $enable-transitions: false;
+
+$theme-colors: (
+  primary: $black,
+  secondary: $main,
+  success: $bold,
+  danger: $danger,
+  info: $info,
+  black: $black,
+  bold: $bold,
+  warn: $warn,
+  main: $main,
+  cursor: $cursor,
+  bright: $bright,
+  notice: $notice,
+  highlight: $highlight,
+  blue: $blue,
+  info2: $info2,
+  dark: $dark,
+  light: $main
+) !default;
+
+::-moz-selection { background: #094FB1; }
+::selection { background: #094FB1; }
+
+* {
+  font-family: 'Operator Mono', 'Ubuntu Mono', 'Roboto Mono', 'Menlo', 'Courier New', Courier, monospace;
+}

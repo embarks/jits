@@ -1,0 +1,84 @@
+@import './mixins';
+@import './theme_spacedust';
+
+body:global {
+  overflow-x: hidden;
+  position: relative;
+}
+
+@keyframes xAxis {
+  50% { transform: translateX(30px) }
+  100% { transform: translateX(30px) }
+}
+
+@keyframes yAxis {
+   50% { transform: translateY(-40px) rotate(50deg) }
+  100% { transform: translateY(40px) rotate(100deg) }
+}
+
+@keyframes xAxis-2 {
+  50% { transform: translateX(-34px) }
+  100% { transform: translateX(-38px) }
+}
+
+@keyframes yAxis-2 {
+   50% { transform: translateY(-31px) rotate(-50deg) }
+  100% { transform: translateY(34px) rotate(-75deg) }
+}
+
+@keyframes xAxis-3 {
+  50% { transform: translateX(-23px) }
+  100% { transform: translateX(-40px); }
+}
+
+@keyframes yAxis-3 {
+   50% { transform: translateY(-65px) rotate(-25deg) }
+  100% { transform: translateY(30px) rotate(-100deg) }
+}
+
+@keyframes fade {
+  0% { opacity: 1 }
+  65% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+.container {
+  position: relative;
+  width: auto;
+  height: 100%;
+  display: flex;
+}
+
+p.burst {
+  position: absolute;
+  display: block;
+  margin: 0;
+  span {
+    font-size: 2.8rem;
+    color: $danger;
+    position: absolute;
+    cursor: pointer;
+    &::after {
+      display: block;
+      content: "★"
+    }
+    &:nth-child(1) {
+      @include animation("xAxis 0.5s, fade 0.5s forwards");
+      &::after {
+        @include animation("yAxis 0.5s")
+      }
+    }
+    &:nth-child(2) {
+      @include animation("xAxis-2 0.5s, fade 0.5s forwards");
+      &::after {
+        @include animation("yAxis-2 0.5s")
+      }
+    }
+    &:nth-child(3) {
+      @include animation("xAxis-3 0.5s, fade 0.5s forwards");
+      &::after {
+        @include animation("yAxis-3 0.5s")
+      }
+    }
+  }
+}

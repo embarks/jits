@@ -1,0 +1,12 @@
+.cute-collapse {
+  color: $main;
+  display: flex;
+  align-items: center;
+  .collapsing, .collapse {
+    transition-duration: .15s!important;
+  }
+  button {
+    margin-right: 0.5rem;
+    align-self: flex-start;
+  }
+}
