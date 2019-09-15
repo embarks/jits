@@ -1,6 +1,6 @@
 {
   "name": "@mindshaft/jits",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "cute things for my humble lab",
   "main": "build/index.js",
   "scripts": {

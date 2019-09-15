@@ -1,12 +1,15 @@
 
-@mixin button($color, $surf, $edge, $borderRadius) {
+@mixin button($color, $surf, $edge, $borderRadius, $sm: false) {
   display: inline-block;
   padding: 0;
   border-width: 1px;
   border-radius: $borderRadius;
   background-color: $edge;
+  border-color: $surf;
+  padding-bottom: 2px;
   span {
-    padding: .5rem;
+    @if $sm { padding: 0.1rem 0.25rem; }
+    @else { padding: .3rem; }
     display: block;
     height: 100%;
     width: 100%;
@@ -15,44 +18,18 @@
     background-color: $surf;
   }
   &:hover {
+    border-color: lighten($surf, 5%);
     span {
       background-color: lighten($surf, 5%);
     }
   }
-  padding-bottom: 4px;
   &:not(:disabled):not(.disabled):active {
-    transform: translateY(2px);
-    padding-bottom: 2px;
-    outline: none;
-    box-shadow: none;
-    background-color: $edge;
-  }
-}
-
-@mixin lilbutton($color, $surf, $edge, $borderRadius) {
-  display: inline-block;
-  padding: 0;
-  border-width: 1px;
-  border-radius: $borderRadius;
-  background-color: $edge;
-  span {
-    padding: 0 .25rem;
-    display: block;
-    height: 100%;
-    width: 100%;
-    color: $color;
-    border: 1px solid $edge;
-    background-color: $surf;
-  }
-  &:hover {
+    border-color: $surf;
     span {
-      background-color: darken($surf, 5%);
-    }
-  }
-  padding-bottom: 3px;
-  &:not(:disabled):not(.disabled):active {
-    transform: translateY(2px);
-    padding-bottom: 1px;
+      background-color: $surf;
+    }      
+    padding-bottom: 0px;
+    margin-top: 2px;
     outline: none;
     box-shadow: none;
     background-color: $edge;
@@ -60,46 +37,38 @@
 }
 
 button.cute-button {
-  &.btn-primary {
-    @include button($main, $black, lighten($black, 25%), 4px);
+  transition-duration: 0s;
+  &.btn-primary { @include button($main, lighten($black, 7%), black, 4px, $sm: false); }
+  &.btn-secondary { @include button($dark, $main, $dark, 4px, $sm: false); }
+  &.btn-info { @include button($black, $info, $black, 4px, $sm: false); }
+  &.btn-success { @include button($bold, $success, $bold, 4px, $sm: false); }
+  &.btn-green { @include button($black, $pine, $black, 4px, $sm: true); }
+  &.btn-danger { @include button($bold, $red, $bold, 4px, $sm: false); }
+  &.btn-error { @include button($black, $red, $black, 4px, $sm: false); }
+  &.btn-warn { @include button($dark, $warn, $dark, 4px, $sm: true); }
+  &.btn-highlight { @include button($bold, $highlight, $bold, 4px, $sm: true); }
+  &.btn-link { @include button($black, $bright-blue, $black, 4px, $sm: true); }
+  &.btn-dark { @include button($main, $dark, black, 4px, $sm: true); }
+  &.btn-light { @include button($dark, $light, $dark, 4px, $sm: true); }
+  &.btn-bright { @include button($black, $bright, $black, 4px, $sm: true); }
+  &.btn-bold { @include button($black, $bold, $black, 4px, $sm: true); }
+  &.btn-black { @include button($main, black, $black, 4px, $sm: true);  }
+  &.btn-subtle { 
+    color: $main;
+    &:not(:disabled):not(.disabled):active {
+      color: darken($main, 5%);
+    }
   }
-  &.btn-secondary {
-    @include button(darken($dark, 10%), $main, $dark, 4px);
-  }
-  &.btn-info {
-    @include button($black, $info, $black, 4px);
-  }
-  &.btn-bright {
-    @include button($black, $bright, $black, 4px);
-  }
-  &.btn-success {
-    @include button($black, $bold, $black, 4px);
-  }
-  &.btn-error,&.btn-danger {
-    @include button($black, $danger, $black, 4px);
-  }
-  &.btn-info2 {
-    @include lilbutton(lighten($info2, 35%), $info2, lighten($info2, 30%), 4px);
-  }
-  &.btn-highlight {
-    @include lilbutton(darken($highlight, 45%), $highlight, darken($highlight, 40%), 4px);
-  }
-  &.btn-bold {
-    @include lilbutton($bold, darken($notice, 10%), $bright, 4px);
-  }
-  &.btn-subtle {
-    @include lilbutton($blue, $bright-blue, $blue, 4px);
-  }
-  &.btn-notice {
-    @include lilbutton($danger, $black, $danger, 4px);
+  &.btn-notice { @include button($black, $notice, $black, 4px, $sm: true); }
+  &.btn-orange { @include button($white, $orange, $white, 4px, $sm: true); }
+  &.btn-disabled,&:disabled,&.disabled { 
+    @include button($grey, darken($grey, 20%), $grey, 4px, $sm: true); 
   }
 }
 .btn-enc {
   display: inline-block;
   padding: 0;
-  ::after {
-    content: '+';
-  }
+  ::after { content: '+'; }
   span {
     background-color: $black;
     color: $main;
@@ -113,8 +82,6 @@ button.cute-button {
   }
   &:not(:disabled):not(.disabled):active,
   .expanded > & {
-    ::after {
-      content: '-';
-    }
+    ::after { content: '-'; }
   }
 }
