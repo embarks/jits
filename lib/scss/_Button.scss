@@ -1,5 +1,6 @@
 
 @mixin button($color, $surf, $edge, $borderRadius, $sm: false) {
+  margin-top: 0 !important;
   display: inline-block;
   padding: 0;
   border-width: 1px;
@@ -29,7 +30,7 @@
       background-color: $surf;
     }      
     padding-bottom: 0px;
-    margin-top: 2px;
+    margin-top: 2px !important;
     outline: none;
     box-shadow: none;
     background-color: $edge;
